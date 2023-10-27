@@ -1,0 +1,6 @@
+<div>
+  <%= image_tag "https://gravatar.com/avatar/#{Digest::SHA256.hexdigest user.email}" %>
+  <div>
+    Name: <%= user.name %> <%= user.last_name %>
+  </div>
+</div>
