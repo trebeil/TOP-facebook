@@ -6,5 +6,5 @@ class User < ApplicationRecord
          :trackable, :timeoutable
 
   has_many :posts, inverse_of: 'author', dependent: :destroy
-  validates :name, :last_name, :email, presence: true
+  validates :email, presence: true
 end
