@@ -5,6 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :timeoutable
 
+  before_destroy do |user|
+    Friendship.where(friend_id: user.id).each do |f|
+      f.destroy
+    end
+  end
+
   has_many :posts, inverse_of: 'author', dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
   validates :email, presence: true
 end
