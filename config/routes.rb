@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "posts#index"
   resources :posts
   resources :users
+  resources :friends, except: [:show, :new, :edit], controller: 'friendships'
   devise_for :users, path: 'accounts'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
