@@ -17,11 +17,18 @@ class FriendshipsController < ApplicationController
   end
 
   def update
+    @friendship = Friendship.find(params[:id])
+    @friendship2 = Friendship.find_by(user_id: @friendship.friend_id,
+                                      friend_id: @friendship.user_id)
+    @friend = @friendship.friend
+    @friendship.update(status: 2)
+    @friendship2.update(status: 2)
+    redirect_to @friend
   end
 
   def destroy
     @friendship = Friendship.find(params[:id])
-    @friendship2 = Friendship.find_by(user_id: @friendship.friend_id, 
+    @friendship2 = Friendship.find_by(user_id: @friendship.friend_id,
                                       friend_id: @friendship.user_id)
     @friend = @friendship.friend
     @friendship.destroy
