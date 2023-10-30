@@ -24,6 +24,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_back_or_to :root
+  end
+
   private
 
   def post_params
