@@ -15,7 +15,7 @@
   <% end %>
 <% end %>
 
-<%#  %>
+<%# Show correct texts depending on the role of the current user on the friendship request %>
 <% if @friendship1 && @friendship1.status == 1 %>
   <% if @role == 'requester' %>
     <%= button_tag 'Pending approval', disabled: true %>
@@ -24,4 +24,8 @@
     <%= link_to 'Accept request', "/friends/#{@friendship1.id}", data: { turbo_method: :patch } %>
     <%= link_to 'Reject request', "/friends/#{@friendship1.id}", data: { turbo_method: :delete } %>
   <% end %>
+<% end %>
+
+<% if @friendship1 && @friendship1.status == 2 %>
+  <%= link_to 'Delete friendship', "/friends/#{@friendship1.id}", data: { turbo_method: :delete } %>
 <% end %>
