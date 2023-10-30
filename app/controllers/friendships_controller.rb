@@ -9,8 +9,8 @@ class FriendshipsController < ApplicationController
     user = current_user
     friend = User.find(params[:friend_id])
     friendship = Friendship.create(user_id: user.id,
-                      friend_id: friend.id,
-                      status: 1)
+                                   friend_id: friend.id,
+                                   status: 1)
     Friendship.create(user_id: friend.id,
                       friend_id: user.id,
                       status: 1)
@@ -22,13 +22,18 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = Friendship.find(params[:id])
-    @friendship2 = Friendship.find_by(user_id: @friendship.friend_id,
-                                      friend_id: @friendship.user_id)
-    @friend = @friendship.friend
-    @friendship.update(status: 2)
-    @friendship2.update(status: 2)
-    redirect_to @friend
+    friendship = Friendship.find(params[:id])
+    requested = friendship.user
+    requester = friendship.friend
+    friendship2 = Friendship.find_by(user_id: requester.id,
+                                     friend_id: requested.id)
+    friendship.update(status: 2)
+    friendship2.update(status: 2)
+    Notification.create(user_id: requester.id,
+                        notificationable_id: friendship2.id,
+                        notificationable_type: 'Friendship',
+                        text: "#{requested.name} #{requested.last_name} has accepted your friend request")
+    redirect_to requester
   end
 
   def destroy
