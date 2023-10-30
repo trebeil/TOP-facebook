@@ -6,14 +6,19 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    Friendship.create(user_id: params[:user_id],
-                      friend_id: params[:friend_id],
+    user = current_user
+    friend = User.find(params[:friend_id])
+    friendship = Friendship.create(user_id: user.id,
+                      friend_id: friend.id,
                       status: 1)
-    Friendship.create(user_id: params[:friend_id],
-                      friend_id: params[:user_id],
+    Friendship.create(user_id: friend.id,
+                      friend_id: user.id,
                       status: 1)
-    @friend = User.find(params[:friend_id])
-    redirect_to @friend
+    Notification.create(user_id: friend.id,
+                        notificationable_id: friendship.id,
+                        notificationable_type: 'Friendship',
+                        text: "#{user.name} #{user.last_name} has sent you a friend request")
+    redirect_to friend
   end
 
   def update

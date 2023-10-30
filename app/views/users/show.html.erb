@@ -9,7 +9,6 @@
 <%# Show button to add friend unless own profile or Friendship request (object) already exists %>
 <% unless @user == current_user || current_user.friends.exists?(@user.id) %>
   <%= form_with url: '/friends', method: 'post' do |form| %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
     <%= form.hidden_field :friend_id, value: @user.id %>
     <%= form.submit 'Add friend' %>
   <% end %>
