@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :friends, except: [:show, :new, :edit], controller: 'friendships', as: 'friendships'
   resources :notifications, only: [:index, :create, :destroy]
   resources :likes, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
   devise_for :users, path: 'accounts'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
