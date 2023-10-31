@@ -1,7 +1,13 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
-    if @comment.save
+    comment = Comment.new(comment_params)
+    if comment.save
+      unless current_user == comment.post.author
+        Notification.create(notificationable_id: comment.id,
+                            notificationable_type: 'Comment',
+                            user_id: comment.post.author.id,
+                            text: "#{current_user.name} #{current_user.last_name} commented on your post")
+      end
       redirect_back_or_to :root
     else
       flash[:error] = 'Invalid comment'
