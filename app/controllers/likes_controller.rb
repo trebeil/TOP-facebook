@@ -27,9 +27,9 @@ class LikesController < ApplicationController
 
   def notification_text(like)
     if like.likeable_type == 'Post'
-      "#{like.user.name} #{like.user.last_name} liked your post"
+      "#{like.user.name} #{like.user.last_name} has liked your post"
     elsif like.likeable_type == 'Comment'
-      "#{like.user.name} #{like.user.last_name} liked your comment"
+      "#{like.user.name} #{like.user.last_name} has liked your comment"
     end
   end
 
