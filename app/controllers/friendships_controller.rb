@@ -14,7 +14,7 @@ class FriendshipsController < ApplicationController
     friend = User.find(params[:friend_id])
     friendship = current_user.create_friendship(friend)
     friendship.create_mirror_friendship
-    friendship.create_notification
+    create_notification(friendship)
     redirect_back_or_to friendship.requested
   end
 
@@ -27,7 +27,7 @@ class FriendshipsController < ApplicationController
     friendship = Friendship.find(params[:id])
     friendship.update(status: 2)
     friendship.mirror_friendship.update(status: 2)
-    friendship.create_notification
+    create_notification(friendship)
     redirect_back_or_to friendship.requester
   end
 
@@ -43,5 +43,26 @@ class FriendshipsController < ApplicationController
     friendship.mirror_friendship.destroy
     friendship.destroy
     redirect_back_or_to ex_friend
+  end
+
+  private
+
+  # If friendship status == 1, create a notification to requested telling that
+  # the requester sent a friend request. Else, create a notification to requester
+  # telling that the requested accepted the request.
+  def create_notification(friendship)
+    if friendship.status == 1
+      Notification.create(user_id: friendship.requested.id,
+                          notificationable_id: friendship.id,
+                          notificationable_type: 'Friendship',
+                          text: "#{friendship.requester.name} #{friendship.requester.last_name} has sent you a friend request",
+                          path: user_path(friendship.requester.id))
+    else
+      Notification.create(user_id: friendship.requester.id,
+                          notificationable_id: friendship.id,
+                          notificationable_type: 'Friendship',
+                          text: "#{friendship.requested.name} #{friendship.requested.last_name} has accepted your friend request",
+                          path: user_path(friendship.requested.id))
+    end
   end
 end

@@ -14,23 +14,6 @@ class Friendship < ApplicationRecord
     Friendship.create(user_id: requested_id, friend_id: requester_id, status: 1)
   end
 
-  # If friendship status == 1, create a notification to requested telling that
-  # the requester sent a friend request. Else, create a notification to requester
-  # telling that the requested accepted the request.
-  def create_notification
-    if self.status == 1
-      Notification.create(user_id: self.requested.id,
-                          notificationable_id: self.id,
-                          notificationable_type: 'Friendship',
-                          text: "#{self.requester.name} #{self.requester.last_name} has sent you a friend request")
-    else
-      Notification.create(user_id: self.requester.id,
-                          notificationable_id: self.id,
-                          notificationable_type: 'Friendship',
-                          text: "#{self.requested.name} #{self.requested.last_name} has accepted your friend request")
-    end
-  end
-
   def mirror_friendship
     requester_id = self.user_id
     requested_id = self.friend_id

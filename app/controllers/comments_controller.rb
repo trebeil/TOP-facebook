@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
         Notification.create(notificationable_id: comment.id,
                             notificationable_type: 'Comment',
                             user_id: comment.post.author.id,
-                            text: "#{current_user.name} #{current_user.last_name} commented on your post")
+                            text: "#{current_user.name} #{current_user.last_name} commented on your post",
+                            path: post_path(comment.post.id))
       end
       redirect_back_or_to :root
     else
