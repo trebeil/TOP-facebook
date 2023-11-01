@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root "posts#index"
   resources :posts
-  resources :users
-  resources :friends, except: [:show, :new, :edit], controller: 'friendships', as: 'friendships'
+  resources :users do
+    resources :friends, only: [:index], controller: 'friendships'
+  end
+  resources :friends, except: [:index, :show, :new, :edit], controller: 'friendships', as: 'friendships'
   resources :notifications, only: [:index, :create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
