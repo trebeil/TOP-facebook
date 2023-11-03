@@ -1,6 +1,6 @@
 <h2>Complete registration</h2>
 
-<% if [nil, ''].include?(@user.name.strip) || [nil, ''].include?(@user.last_name.strip) %>
+<% if [nil, ''].include?(@name) || [nil, ''].include?(@last_name) %>
   <div>Please complete your profile by filling out with your name and last name.</div>
 <% else %>
   <div>Please confirm your name and last name.</div>
@@ -19,7 +19,7 @@
     <%= f.text_field :last_name, autocomplete: "family-name" %>
   </div>
 
-  <% if [nil, ''].include?(@user.name.strip) || [nil, ''].include?(@user.last_name.strip) %>
+  <% if [nil, ''].include?(@name) || [nil, ''].include?(@last_name) %>
     <div class="actions">
       <%= f.submit "Update" %>
     </div>

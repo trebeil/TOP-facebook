@@ -23,6 +23,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/complete
   def complete_edit
     @user = User.find(current_user.id)
+    @name = strip_or_nil(@user, 'name')
+    @last_name = strip_or_nil(@user, 'last_name')
     render :complete_edit
   end
 

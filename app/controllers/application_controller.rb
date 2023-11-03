@@ -3,7 +3,14 @@ class ApplicationController < ActionController::Base
   append_before_action :require_name
 
   def require_name
-    redirect_to '/accounts/complete' if [nil, ''].include?(current_user.name.strip) ||
-                                        [nil, ''].include?(current_user.last_name.strip)
+    name = strip_or_nil(current_user, 'name')
+    last_name = strip_or_nil(current_user, 'last_name')
+
+    redirect_to '/accounts/complete' if [nil, ''].include?(name) ||
+                                        [nil, ''].include?(last_name)
+  end
+
+  def strip_or_nil(user, property)
+    user.send(property) && user.send(property).strip
   end
 end
