@@ -1,7 +1,17 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :require_name
+
   def google_oauth2
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.from_omniauth(request.env['omniauth.auth'])
+
+    unless @user
+      @user = User.persist_user(request.env['omniauth.auth'])
+      flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
+      sign_in @user
+      redirect_to accounts_complete_path
+      return
+    end
 
     if @user.persisted?
       flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
