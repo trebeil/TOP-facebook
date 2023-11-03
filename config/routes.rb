@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
-  devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'omniauth_callbacks',
+                                                      registrations: 'users/registrations',
+                                                      sessions: 'users/sessions' }
+  devise_scope :user do
+    get '/accounts/complete', to: 'users/registrations#complete_edit'
+    put '/accounts/complete', to: 'users/registrations#complete_update'
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

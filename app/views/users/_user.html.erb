@@ -1,6 +1,10 @@
 <div>
-  <%#= link_to image_tag("https://gravatar.com/avatar/#{Digest::SHA256.hexdigest user.email}"), user %>
-  <%= link_to image_tag(user.photo), user %>
+  <% if user.photo %>
+    <%= link_to image_tag(user.photo), user %>
+  <% else %>
+    <%= link_to image_tag("https://gravatar.com/avatar/#{Digest::SHA256.hexdigest user.email}"), user %>
+  <% end %>
+  
   <div>
     Name: <%= user.name %> <%= user.last_name %>
   </div>
