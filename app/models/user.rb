@@ -11,6 +11,13 @@ class User < ApplicationRecord
     end
   end
 
+  after_create do |user|
+    unless user.photo
+      photo_url = "https://gravatar.com/avatar/#{Digest::SHA256.hexdigest(user.email)}"
+      user.update(photo: photo_url)
+    end
+  end
+
   has_many :posts, inverse_of: 'author', dependent: :destroy
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
