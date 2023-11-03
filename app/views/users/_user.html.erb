@@ -5,6 +5,10 @@
     Name: <%= user.name %> <%= user.last_name %>
   </div>
 
+  <% if user == current_user %>
+    <%= link_to 'Edit profile', edit_user_registration_path %>
+  <% end %>
+
   <div>
     <% if current_user.friendship(user) %>
       <% if current_user.friendship_confirmed?(user) %>
