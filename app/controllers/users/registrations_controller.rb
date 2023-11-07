@@ -94,11 +94,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_photo
-    user = current_user
-    photo_url = URI.parse("https://gravatar.com/avatar/#{Digest::SHA256.hexdigest(user.email)}")
-    filename = File.basename(photo_url.path)
-    photo_file = photo_url.open
-    user.photo.attach(io: photo_file, filename: filename)
+    if current_user
+      user = current_user
+      photo_url = URI.parse("https://gravatar.com/avatar/#{Digest::SHA256.hexdigest(user.email)}")
+      filename = File.basename(photo_url.path)
+      photo_file = photo_url.open
+      user.photo.attach(io: photo_file, filename: filename)
+    end
   end
 
   # The path used after sign up.
