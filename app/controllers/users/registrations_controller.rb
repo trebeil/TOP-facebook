@@ -60,6 +60,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
       render 'devise/registrations/edit', status: :unprocessable_entity and return
     end
+    if params[:user][:photo] && params[:user][:current_password] == ''
+      @user.errors.add(:current_password, "can't be blank")
+      render 'devise/registrations/edit', status: :unprocessable_entity and return
+    end
     super
   end
 
