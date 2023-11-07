@@ -14,6 +14,12 @@
   </div>
 
   <div class="field">
+    <%= f.label :photo %><br />
+    <%= image_tag @user.photo.variant(:thumb)  %><br>
+    <%= f.file_field :photo %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autocomplete: "email" %>
   </div>

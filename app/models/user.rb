@@ -20,6 +20,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, inverse_of: 'author', dependent: :destroy
   has_one_attached :photo
+  has_one_attached :photo do |attachable|
+    attachable.variant :thumb, resize_to_fit: [90, 90]
+  end
   validates :email, presence: true
 
   def self.from_omniauth(access_token)

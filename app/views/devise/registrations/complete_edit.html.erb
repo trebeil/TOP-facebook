@@ -19,6 +19,14 @@
     <%= f.text_field :last_name, autocomplete: "family-name" %>
   </div>
 
+  <div>If you would like to update your photo, please upload it now.</div>
+
+  <div class="field">
+    <%= f.label :photo %><br />
+    <%= image_tag @user.photo.variant(:thumb)  %><br>
+    <%= f.file_field :photo %>
+  </div>
+
   <% if [nil, ''].include?(@name) || [nil, ''].include?(@last_name) %>
     <div class="actions">
       <%= f.submit "Update" %>
