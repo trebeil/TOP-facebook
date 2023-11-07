@@ -13,10 +13,10 @@
     <%= f.text_field :last_name, autocomplete: "family-name" %>
   </div>
 
-  <div class="field">
+  <div class="field" data-controller='photo' >
     <%= f.label :photo %><br />
-    <%= image_tag @user.photo.variant(:thumb)  %><br>
-    <%= f.file_field :photo %>
+    <%= f.file_field :photo, data: { action: 'change->photo#preview', 'photo-target': 'input' }%><br>
+    <%= image_tag @user.photo.variant(:thumb), data: { 'photo-target': 'image' } %>
   </div>
 
   <div class="field">

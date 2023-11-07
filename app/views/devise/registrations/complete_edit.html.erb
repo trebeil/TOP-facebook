@@ -21,10 +21,10 @@
 
   <div>If you would like to update your photo, please upload it now.</div>
 
-  <div class="field">
+  <div class="field" data-controller='photo' >
     <%= f.label :photo %><br />
-    <%= image_tag @user.photo.variant(:thumb)  %><br>
-    <%= f.file_field :photo %>
+    <%= f.file_field :photo, data: { action: 'change->photo#preview', 'photo-target': 'input' }%><br>
+    <%= image_tag @user.photo.variant(:thumb), data: { 'photo-target': 'image' } %>
   </div>
 
   <% if [nil, ''].include?(@name) || [nil, ''].include?(@last_name) %>
