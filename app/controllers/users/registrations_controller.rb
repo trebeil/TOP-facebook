@@ -42,6 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
       render 'devise/registrations/complete_edit', status: :unprocessable_entity and return
     end
+    flash[:success] = 'Profile successfuly created. Welcome to TOP-Facebook!'
     redirect_to :root
   end
 
