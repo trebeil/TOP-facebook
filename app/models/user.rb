@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable and :omniauthable
@@ -11,19 +13,13 @@ class User < ApplicationRecord
     end
   end
 
-  after_create do |user|
-    unless user.photo
-      photo_url = "https://gravatar.com/avatar/#{Digest::SHA256.hexdigest(user.email)}"
-      user.update(photo: photo_url)
-    end
-  end
-
   has_many :posts, inverse_of: 'author', dependent: :destroy
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
   has_many :notifications, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, inverse_of: 'author', dependent: :destroy
+  has_one_attached :photo
   validates :email, presence: true
 
   def self.from_omniauth(access_token)
@@ -33,11 +29,15 @@ class User < ApplicationRecord
 
   def self.persist_user(access_token)
     data = access_token.info
-    User.create(name: data['first_name'],
-                last_name: data['last_name'],
-                email: data['email'],
-                password: Devise.friendly_token[0,20],
-                photo: data['image'])
+    user = User.create(name: data['first_name'],
+                       last_name: data['last_name'],
+                       email: data['email'],
+                       password: Devise.friendly_token[0,20])
+    photo_url = URI.parse(data['image'])
+    filename = File.basename(photo_url.path)
+    photo_file = photo_url.open
+    user.photo.attach(io: photo_file, filename: filename)
+    user
   end
 
   def create_friendship(friend)
