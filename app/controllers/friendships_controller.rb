@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  before_action :check_authorization, only: [:update, :destroy]
+
   def index
     @user = User.find(params[:user_id])
     @name = if @user == current_user
@@ -83,6 +85,13 @@ class FriendshipsController < ApplicationController
                           notificationable_type: 'Friendship',
                           text: "#{friendship.requested.name} #{friendship.requested.last_name} has accepted your friend request",
                           path: user_path(friendship.requested.id))
+    end
+  end
+
+  def check_authorization
+    friendship = Friendship.find(params[:id])
+    unless friendship.user_id == current_user.id
+      redirect_back_or_to :root, status: 403
     end
   end
 end

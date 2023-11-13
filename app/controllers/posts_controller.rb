@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :check_authorization, only: :destroy
+
   def index
     friends_ids = Friendship.where(user_id: current_user.id, status: 2)
                             .pluck(:friend_id)
@@ -45,5 +47,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def check_authorization
+    post = Post.find(params[:id])
+    unless post.author == current_user
+      redirect_back_or_to :root, status: 403
+    end
   end
 end

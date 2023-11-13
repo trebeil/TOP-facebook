@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :check_authorization, only: :destroy
+
   def create
     like = Like.new(like_params)
     like.user_id = current_user.id
@@ -37,5 +39,12 @@ class LikesController < ApplicationController
 
   def like_params
     params.require(:like).permit(:likeable_id, :likeable_type)
+  end
+
+  def check_authorization
+    like = Like.find(params[:id])
+    unless like.user_id == current_user.id
+      redirect_back_or_to :root, status: 403
+    end
   end
 end
