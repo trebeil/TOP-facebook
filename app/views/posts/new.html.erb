@@ -1,15 +1,17 @@
 <h1>New post</h1>
 
-<% if @post.errors.any? %>
-  <div id='error_explanation'>
-    <h2><%= pluralize(@post.errors.count, 'error') %> prohibited the post from being saved.</h2>
+<%= turbo_frame_tag id='new_post' do %>
+  <% if @post.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@post.errors.count, 'error') %> prohibited the post from being saved.</h2>
 
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render 'post_form', :post => @post %>
 <% end %>
-
-<%= render 'post_form', :post => @post %>

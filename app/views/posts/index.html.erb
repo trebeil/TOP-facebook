@@ -1,7 +1,9 @@
 <h1>Timeline</h1>
 
 <h2>New post</h2>
-<%= render 'post_form', :post => @post %>
+<%= turbo_frame_tag id='new_post', src:new_post_path %>
 
 <h2>Recent posts</h2>
-<%= render @posts %>
+<div id='posts'>
+  <%= render @posts %>
+</div>
