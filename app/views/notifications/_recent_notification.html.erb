@@ -1,5 +1,7 @@
-<%= link_to n.text, n.path %>
-  - 
-<%= form_with url: update_notification_hidden_path(n), method: 'put' do |form| %>
-  <%= form.submit 'Hide' %>
-<% end %>
+<div id=<%= "recent_notification_#{n.id}" %>>
+  <%= link_to n.text, n.path %>
+    - 
+  <%= form_with url: update_notification_hidden_path(n), method: 'put' do |form| %>
+    <%= form.submit 'Hide' %>
+  <% end %>
+</div>
