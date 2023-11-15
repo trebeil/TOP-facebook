@@ -35,10 +35,13 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     path = post_url(@post)
     @post.destroy
-    if request.referer == path
-      redirect_to :root
-    else
-      redirect_back_or_to :root
+    respond_to do |format|
+      format.turbo_stream
+      if request.referer == path
+        format.html { redirect_to :root }
+      else
+        format.html { redirect_back_or_to :root }
+      end
     end
   end
 
