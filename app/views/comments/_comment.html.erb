@@ -1,4 +1,4 @@
-<div class='comment'>
+<div id=<%= "comment_#{comment.id}" %> class='comment'>
   <div><%= comment.author.name %> <%= comment.author.last_name %>:</div>
   <div><%= simple_format h comment.content %></div>
   <div>Likes: <%= comment.likes.size %></div>
@@ -13,6 +13,6 @@
     <% end %>
   <% end %>
   <% if current_user == comment.author || current_user == comment.post.author %>
-    <%= link_to 'Delete comment', comment_path(comment.id), data: { turbo_method: :delete } %>
+    <%= link_to 'Delete comment', post_comment_path(comment.post, comment), data: { turbo_method: :delete } %>
   <% end %>
 </div>
