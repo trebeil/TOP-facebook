@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "posts#index"
   resources :posts, except: [:edit, :update] do
-    resources :comments, except: [:show, :edit, :update]
+    resources :comments, except: [:show, :edit, :update], module: 'posts'
   end
   resources :users, only: [:index, :show] do
     resources :friends, only: [:index], controller: 'friendships'
