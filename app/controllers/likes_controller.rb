@@ -14,11 +14,8 @@ class LikesController < ApplicationController
              else
                post_path(@like.likeable.post.id)
              end
-      Notification.create(notificationable_id: @like.id,
-                          notificationable_type: 'Like',
-                          user_id: @like.likeable.author.id,
-                          text: notification_text(@like),
-                          path: path)
+      notification = create_notification(@like, path)
+      broadcast_notification(notification)
     end
     respond_to do |format|
       format.turbo_stream
@@ -43,6 +40,14 @@ class LikesController < ApplicationController
     elsif like.likeable_type == 'Comment'
       "#{like.user.name} #{like.user.last_name} has liked your comment"
     end
+  end
+
+  def create_notification(like, path)
+    Notification.create(notificationable_id: like.id,
+      notificationable_type: 'Like',
+      user_id: like.likeable.author.id,
+      text: notification_text(like),
+      path: path)
   end
 
   def like_params

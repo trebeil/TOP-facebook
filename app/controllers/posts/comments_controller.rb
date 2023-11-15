@@ -17,11 +17,8 @@ class Posts::CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         unless current_user == @comment.post.author
-          Notification.create(notificationable_id: @comment.id,
-                              notificationable_type: 'Comment',
-                              user_id: @comment.post.author.id,
-                              text: "#{current_user.name} #{current_user.last_name} has commented on your post",
-                              path: post_path(@comment.post.id))
+          notification = create_notification(@comment)
+          broadcast_notification(notification)
         end
         format.turbo_stream
         format.html { redirect_to post_comments_path(@comment.post) }
@@ -44,6 +41,14 @@ class Posts::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content, :post_id)
+  end
+
+  def create_notification(comment)
+    Notification.create(notificationable_id: comment.id,
+      notificationable_type: 'Comment',
+      user_id: comment.post.author.id,
+      text: "#{current_user.name} #{current_user.last_name} has commented on your post",
+      path: post_path(comment.post.id))
   end
 
   def check_authorization

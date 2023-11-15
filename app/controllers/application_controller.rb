@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def strip_or_nil(user, property)
     user.send(property) && user.send(property).strip
   end
+
+  def broadcast_notification(notification)
+    NotificationsChannel.broadcast_to(User.find(notification.user_id), notification)
+  end
 end
