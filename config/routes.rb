@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :friends, only: [:create, :update, :destroy], controller: 'friendships', as: 'friendships'
   resources :notifications, only: [:index, :destroy]
+  put '/notifications/:id', to: 'notifications#update_hidden', as: 'update_notification_hidden'
   resources :likes, only: [:create, :destroy]
   devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'omniauth_callbacks',
                                                       registrations: 'users/registrations',
