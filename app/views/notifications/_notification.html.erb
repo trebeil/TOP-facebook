@@ -1,3 +1,5 @@
 <div id=<%= "notification_#{ notification.id }" %>>
-  <%= link_to notification.text, notification.path %> - <%= link_to 'Delete notification', notification, data: { turbo_method: 'delete' } %>
+  <%= link_to notification.text, notification.path %>
+   - 
+   <%= link_to 'Delete notification', notification, data: { turbo_method: 'delete' } %>
 </div>

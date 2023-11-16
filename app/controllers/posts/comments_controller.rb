@@ -45,10 +45,10 @@ class Posts::CommentsController < ApplicationController
 
   def create_notification(comment)
     Notification.create(notificationable_id: comment.id,
-      notificationable_type: 'Comment',
-      user_id: comment.post.author.id,
-      text: "#{current_user.name} #{current_user.last_name} has commented on your post",
-      path: post_path(comment.post.id))
+                        notificationable_type: 'Comment',
+                        user_id: comment.post.author.id,
+                        text: "#{current_user.name} #{current_user.last_name} has commented on your post",
+                        path: "#{post_path(comment.post.id)}#comment_#{comment.id}")
   end
 
   def check_authorization
