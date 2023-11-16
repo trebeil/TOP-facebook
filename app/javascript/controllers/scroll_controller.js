@@ -7,6 +7,7 @@ export default class extends Controller {
       if (hash != '') {
         var element = document.querySelector(`#${hash}`);
         if (element != null) {
+          element.classList.add('scrolled-into')
           element.scrollIntoView();
         }
       }

@@ -29,3 +29,7 @@
  html {
   scroll-behavior: smooth;
  }
+
+ .scrolled-into {
+  border: 2px solid red;
+ }
