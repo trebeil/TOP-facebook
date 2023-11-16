@@ -61,7 +61,7 @@ class LikesController < ApplicationController
     like = Like.new(like_params)
     resource = like.likeable
     allow_create = false
-    allowed_list = current_user.friends << current_user
+    allowed_list = current_user.friends.to_a << current_user
 
     allow_create = true if allowed_list.include?(resource.author)
 
