@@ -2,7 +2,7 @@
   <div><%= post.author.name %> <%= post.author.last_name %></div>
   <div><%= simple_format h post.content %></div>
   <div id=<%= "Post_#{post.id}_likes_counter" %>>
-    Likes: <%= post.likes.size %>
+    Likes: <%= link_to post.likes.size, post_likes_path(post) %>
   </div>
   <div id=<%= "post_#{post.id}_comments_counter" %>>
     Comments: <%= post.comments.size %>
