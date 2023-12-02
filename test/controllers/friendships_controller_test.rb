@@ -1,23 +1,23 @@
 require "test_helper"
 
 class FriendshipsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get friendships_index_url
-    assert_response :success
+  test "should redirect index to sign in if not authenticated" do
+    get user_friends_url users(:aaa)
+    assert_response :redirect
   end
 
-  test "should get create" do
-    get friendships_create_url
-    assert_response :success
+  test "should redirect create to sign in if not authenticated" do
+    post friendships_url
+    assert_response :redirect
   end
 
-  test "should get update" do
-    get friendships_update_url
-    assert_response :success
+  test "should redirect update to sign in if not authenticated" do
+    put friendship_url users(:aaa)
+    assert_response :redirect
   end
 
-  test "should get destroy" do
-    get friendships_destroy_url
-    assert_response :success
+  test "should redirect destroy to sign in if not authenticated" do
+    delete friendship_url users(:aaa)
+    assert_response :redirect
   end
 end

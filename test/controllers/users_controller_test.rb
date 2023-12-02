@@ -1,13 +1,13 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  test "should get show" do
-    get users_show_url
-    assert_response :success
+  test "should redirect show to sign in if not authenticated" do
+    get user_url users(:aaa)
+    assert_response :redirect
   end
 
-  test "should get index" do
-    get users_index_url
-    assert_response :success
+  test "should redirect index to sign in if not authenticated" do
+    get users_url
+    assert_response :redirect
   end
 end

@@ -1,13 +1,18 @@
 require "test_helper"
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
-  test "should get create" do
-    get likes_create_url
-    assert_response :success
+  test "should not get index" do
+    get likes_url
+    assert_response :not_found
   end
 
-  test "should get destroy" do
-    get likes_destroy_url
-    assert_response :success
+  test "should redirect create to sign in if not authenticated" do
+    post likes_url
+    assert_response :redirect
+  end
+
+  test "should redirect destroy to sign in if not authenticated" do
+    delete like_url likes(:one)
+    assert_response :redirect
   end
 end

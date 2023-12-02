@@ -2,8 +2,8 @@
 
 one:
   content: MyText
-  user: one
+  author: aaa
 
 two:
   content: MyText
-  user: two
+  author: bbb
