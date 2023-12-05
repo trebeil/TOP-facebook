@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
-  default from: 'registrations@top-facebook.com',
-          reply_to: 'do-not-reply@top-facebook.com'
+  default from: 'do-not-reply@myfirstrailsapp.com',
+          reply_to: 'do-not-reply@myfirstrailsapp.com'
 
   def welcome_email
     @user = params[:user]

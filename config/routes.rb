@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'omniauth_callbacks',
                                                       registrations: 'users/registrations',
-                                                      sessions: 'users/sessions' }
+                                                      sessions: 'users/sessions',
+                                                      passwords: 'users/passwords' }
   devise_scope :user do
     get '/accounts/complete', to: 'users/registrations#complete_edit'
     put '/accounts/complete', to: 'users/registrations#complete_update'
