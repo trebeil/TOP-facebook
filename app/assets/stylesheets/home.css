@@ -70,13 +70,6 @@
   margin-bottom: 24px;
 }
 
-/* MAKE IT RESPONSIVE */
-@media (max-width: 767px) {
-  .hero-right {
-    display: none;
-  }
-}
-
 /* COLORS, BACKGROUNDS AND BORDERS */
 .home a:link,
 .home a:visited,
@@ -151,4 +144,11 @@
 
 .cta :nth-child(2), .cta :nth-child(3) {
   font-size: 20px;
+}
+
+/* MAKE IT RESPONSIVE */
+@media (max-width: 767px) {
+  .hero-right {
+    display: none;
+  }
 }
