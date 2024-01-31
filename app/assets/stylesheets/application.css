@@ -14,23 +14,45 @@
  *= require_self
  */
 
+ /* I organized all CSS files in sections
+  * ELEMENT SIZE AND POSITIONING
+  * MAKE IT RESPONSIVE
+  * COLORS, BACKGROUNDS AND BORDERS
+  * FONTS
+  */
+
+ /* Template for responsive behavior
+  * @media (max-width: 1599px) {
+  * }
+  *  
+  * @media (max-width: 1280px) {
+  * }
+  *
+  * @media (max-width: 767px) {
+  * }
+  *
+  * @media (max-width: 360px) {
+  * }
+  */
+  
+
  /* ADD BORDERS FOR VISUALIZING ELEMENTS */
- * {
-  /*border: 1px solid red;*/
- }
+ /* * {
+  border: 1px solid red;
+ }*/
 
- /* GENERAL SETTINGS */
+/* GENERAL SETTINGS */
 
- * {
+* {
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   box-sizing: border-box;
- }
+}
 
- html {
+html {
   scroll-behavior: smooth;
- }
+}
 
 /* ELEMENT SIZE AND POSITIONING */
 html, body {
@@ -41,11 +63,11 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
- }
+}
 
- .main {
+.main {
   flex-grow: 1;
- }
+}
 
 .nav {
   display: flex;
@@ -63,134 +85,38 @@ body {
   margin: 0 0.5rem;
 }
 
-.sign-in {
+.nav-sign-in {
   padding: 8px 36px;
 }
 
 .footer {
   text-align: center;
+  padding: 32px 0px;
 }
 
-.home {
-  display: flex;
-  flex-direction: column;
- }
-
- .hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 40px;
- }
-
- .hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  max-width: 420px;
- }
-
- .hero-left :first-child, .hero-left :nth-child(3) {
-  margin-bottom: 8px;
- }
-
- .hero-left :nth-child(3) {
-  margin-bottom: 32px;
- }
-
- .hero-left a, .cta a {
-  padding: 16px 96px;
-  }
-
- .hero-right {
-  height: 480px;
-  width: 670px;
- }
-
- .testimony {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 120px 40px;
- }
-
- .anonymous {
-  width: 46px;
-  height: 46px;
- }
-
- .cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 104px 40px;
- }
-
- .cta :nth-child(2), .cta :nth-child(3) {
-  margin: 0;
-  max-width: 412px;
- }
-
- .cta :first-child {
-  margin-bottom: 36px;
- }
-
- .cta :nth-child(3) {
-  margin-bottom: 24px;
- }
-
- .footer {
-  padding: 32px 0px;
- }
-
- .footer .logo {
+.footer .logo {
   margin-bottom: 12px;
- }
+}
 
- /* MAKE IT RESPONSIVE */
- @media (max-width: 1599px) {
-  .home {
-    
-  }
- }
+/* MAKE IT RESPONSIVE */
  
- @media (max-width: 1280px) {
-  .home {
-    
-  }
- }
-
- @media (max-width: 767px) {
-  .hero-right {
-    display: none;
-  }
- }
-
- @media (max-width: 360px) {
-  .home {
-    
-  }
- }
 
 /* COLORS, BACKGROUNDS AND BORDERS */
 .post, .comment {
   border: 1px solid black;
- }
+}
 
- .error {
+.error {
   color: red;
- }
+}
 
- .field_with_errors {
+.field_with_errors {
   border: 1px solid red;
- }
+}
 
- .scrolled-into {
+.scrolled-into {
   border: 2px solid red;
- }
+}
 
 .nav {
   background-color: #8200E0;
@@ -201,19 +127,10 @@ body {
   color: white;
 }
 
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-a:active {
+.nav a:link,
+.nav a:visited,
+.nav a:hover,
+.nav a:active {
   text-decoration: none;
 }
 
@@ -225,52 +142,14 @@ a:active {
   color: black;
 }
 
-.sign-in {
+.nav-sign-in {
   border: 1px solid white;
   border-radius: 4px;
 }
 
-.sign-in:hover {
+.nav-sign-in:hover {
   color: #8200E0;
   background-color: white;
-}
-
-.hero-left a, .cta a {
-  background-color: #C6E000;
-  color: black;
-  border-radius: 4px;
-  border: 1px solid white;
-}
-
-.hero-left a:hover, .cta a:hover {
-  border: 1px solid #C6E000;
-}
-
-.hero-right {
-  background-image: url('clown-svgrepo-com-black-1024.png');
-  background-position: center;
-  background-size: cover;
-  animation-name: change-bg;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-timing-function: steps(2, jump-none);
-}
-
-@keyframes change-bg {
-  100% {
-    background-image: url('clown-with-hat-svgrepo-com-black-1024.png');
-  }
-}
-
-.anonymous {
-  background-image: url('anonymous-1-svgrepo-com-black-256.png');
-  background-position: center;
-  background-size: cover;
-}
-
-.testimony {
-  background-color: #C6E000;
 }
 
 /* FONTS */
@@ -301,34 +180,6 @@ a:active {
 .nav li a {
   font-size: 18px;
   font-weight: bold;
-}
-
-.hero-left :first-child {
-  font-size: 56px;
-}
-
-.hero-left :nth-child(2), .hero-left :nth-child(3) {
-  font-size: 20px;
-}
-
-.hero a, .cta a {
-  font-size: 18px;
-}
-
-.testimony :first-child {
-  font-size: 24px;
-}
-
-.testimony :last-child {
-  font-size: 14px;
-}
-
-.cta .lato-bold {
-  font-size: 24px;
-}
-
-.cta :nth-child(2), .cta :nth-child(3) {
-  font-size: 20px;
 }
 
 .footer div {
