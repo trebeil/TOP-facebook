@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   def welcome_email
     @user = params[:user]
     @name = @user.name.capitalize
-    mail(subject: "#{@name}, welcome to TOP-Facebook!",
+    mail(subject: "#{@name}, welcome to fakebook!",
          to: @user.email)
   end
 end

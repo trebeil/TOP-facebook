@@ -43,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render 'devise/registrations/complete_edit', status: :unprocessable_entity and return
     end
     UserMailer.with(user: @user).welcome_email.deliver_later
-    flash[:success] = 'Profile successfuly created. Welcome to TOP-Facebook!'
+    flash[:success] = 'Profile successfuly created. Welcome to fakebook!'
     redirect_to :root
   end
 
