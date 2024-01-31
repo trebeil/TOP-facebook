@@ -19,21 +19,21 @@
   margin: 80px 0;
 }
 
-.stretch {
+.sign-in-modal .stretch {
   width: 100%;
 }
 
-.divider{
+.sign-in-modal .divider{
   display: flex;
   align-items: center;
   padding: 0 8px;
 }
 
-.divider > .text {
+.sign-in-modal .divider > .text {
   padding: 0 8px;
 }
 
-.line {
+.sign-in-modal .line {
   flex-grow: 1;
   height: 1px;
 }
@@ -53,27 +53,27 @@
 }
 
 .sign-in-modal > .button_to > button,
-.actions > input,
-.new_user :nth-child(2) > input,
+.sign-in-modal .actions > input,
+.sign-in-modal .new_user :nth-child(2) > input,
 .new_user :nth-child(3) > input {
   height: 64px;
 }
 
-.new_user :nth-child(2) > input,
-.new_user :nth-child(3) > input {
+.sign-in-modal .new_user :nth-child(2) > input,
+.sign-in-modal .new_user :nth-child(3) > input {
   padding: 1px 16px;
 }
 
-.field:nth-child(2),
-.field:nth-child(3) {
+.sign-in-modal .field:nth-child(2),
+.sign-in-modal .field:nth-child(3) {
   margin: 16px 0;
 }
 
-#new_user > div.actions {
+.sign-in-modal #new_user > div.actions {
   margin: 24px 0 8px 0;
 }
 
-.new_user {
+.sign-in-modal .new_user {
   margin: 0 0 24px 0;
 }
 
@@ -82,7 +82,7 @@
   border: 1px solid black;
 }
 
-.line {
+.sign-in-modal .line {
   background-color: black;
 }
 
@@ -91,14 +91,14 @@
 }
 
 .sign-in-modal > .button_to > button,
-.actions > input {
+.sign-in-modal .actions > input {
   background-color: #C6E000;
   border: 1px solid white;
   border-radius: 5px;
 }
 
 .sign-in-modal > .button_to > button:hover,
-.actions > input:hover {
+.sign-in-modal .actions > input:hover {
   border: 1px solid #C6E000;
 }
 
@@ -116,7 +116,7 @@
   border-radius: 5px;
 }
 
-#new_user > div:nth-child(4) > label {
+.sign-in-modal #new_user > div:nth-child(4) > label {
   font-size: 16px;
 }
 
