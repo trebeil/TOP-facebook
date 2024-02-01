@@ -99,8 +99,10 @@ body {
   margin-bottom: 12px;
 }
 
-/* MAKE IT RESPONSIVE */
- 
+.alert, .notice {
+  text-align: center;
+  padding: 12px 0;
+}
 
 /* COLORS, BACKGROUNDS AND BORDERS */
 .post, .comment {
@@ -108,15 +110,24 @@ body {
 }
 
 .error {
-  color: red;
+  color: #E05100;
 }
 
-.field_with_errors {
-  border: 1px solid red;
+.field_with_errors #user_email,
+.field_with_errors #user_password,
+.field_with_errors #user_password_confirmation {
+  border: 1px solid #E05100;
+}
+
+.field_with_errors #user_email:focus,
+.field_with_errors #user_password:focus,
+.field_with_errors #user_password_confirmation:focus {
+  border: 2px solid #E05100;
+  outline: #E05100;
 }
 
 .scrolled-into {
-  border: 2px solid red;
+  border: 2px solid #E05100;
 }
 
 .nav {
@@ -151,6 +162,14 @@ body {
 .nav-sign-in:hover {
   color: #8200E0;
   background-color: white;
+}
+
+.alert {
+  background-color: #E05100;
+}
+
+.notice {
+  background-color: #C6E000;
 }
 
 /* FONTS */
@@ -190,3 +209,5 @@ body {
 .footer a {
   text-decoration: underline;
 }
+
+/* MAKE IT RESPONSIVE */

@@ -29,6 +29,9 @@
         </ul>
       <% end %>
     </section>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name unless msg.blank? %>
+    <% end %>
     <% if user_signed_in? %>
       <h2>Recent notifications</h2>
       <div class='notifications'>
@@ -39,9 +42,6 @@
           <%= link_to 'All notifications', notifications_path %>
         </div>
       </div>
-    <% end %>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: name unless msg.blank? %>
     <% end %>
     <section class='main'>
       <%= yield %>
