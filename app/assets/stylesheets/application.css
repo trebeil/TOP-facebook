@@ -55,6 +55,15 @@ html {
   scroll-behavior: smooth;
 }
 
+.notification-hide-button:hover {
+  cursor: pointer
+}
+
+.notification-symbol:hover,
+.close-symbol:hover {
+  cursor: pointer
+}
+
 /* ELEMENT SIZE AND POSITIONING */
 html, body {
   height: 100%;
@@ -77,9 +86,22 @@ body {
   padding: 0 24px;
 }
 
-.nav > ul {
+.notification-symbol {
+  color: white;
+}
+
+.nav-notification-and-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
   list-style-type: none;
   display: inline-flex;
+}
+
+.sign-in-link {
+  list-style-type: none;
 }
 
 .nav li {
@@ -102,6 +124,69 @@ body {
 .alert, .notice {
   text-align: center;
   padding: 12px 0;
+}
+
+.notifications {
+  position: absolute;
+  top: 64px;
+  right: 240px;
+  width: 390px;
+  padding: 0px 0 24px 16px;
+  visibility: hidden;
+}
+
+.notifications h2 {
+  margin-top: 0;
+  margin-right: 16px;
+}
+
+.notification {
+  margin: 4px 16px 4px 0;
+  padding: 8px 16px 8px 8px;
+  display: flex;
+}
+
+.notification-info {
+  display: flex;
+  flex-grow: 1;
+}
+
+.notification-hide-form {
+  text-align: end;
+}
+
+.notification-photo {
+  width: 64px;
+  height: 64px;
+}
+
+.notification-text {
+  flex-grow: 1;
+  padding: 4px 24px 0 8px;
+  margin: 0;
+}
+
+.notification-hide-button {
+  margin-right: 4px;
+}
+
+.notification-hide-button:hover,
+.notification-hide-button:focus {
+  transform: scale(1.8);
+}
+
+.show {
+  visibility: visible;
+}
+
+.notifications-title-close {
+  margin: 8px 8px 0 0;
+  text-align: end;
+}
+
+.all-notifications-link {
+  margin: 16px 16px 0 0;
+  text-align: center;
 }
 
 /* COLORS, BACKGROUNDS AND BORDERS */
@@ -172,6 +257,63 @@ body {
   background-color: #C6E000;
 }
 
+.notifications {
+  background-color: white;
+  border: 3px solid #8200E0;
+}
+
+.notification {
+  border: 1px solid rgb(211, 211, 211);
+}
+
+.notification-hide-button {
+  background-image: url('visibility_off_FILL0_wght400_GRAD0_opsz24.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  transform: scale(1.5);
+  border: none;
+}
+
+.notification-info:link,
+.notification-info:visited,
+.notification-info:hover,
+.notification-info:active {
+  text-decoration: none;
+  color: black;
+}
+
+.all-notifications-link a:link,
+.all-notifications-link a:visited,
+.all-notifications-link a:hover,
+.all-notifications-link a:active {
+  text-decoration: none;
+  color: #8200E0;
+}
+
+.notification:hover,
+.notification:focus {
+  border: 1px solid #8200E0;
+}
+
+.notification-symbol {
+  color: white;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 500,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.close-symbol {
+  color: white;
+  background-color: #8200E0;
+}
+
 /* FONTS */
 
 .lato-regular {
@@ -208,6 +350,11 @@ body {
 
 .footer a {
   text-decoration: underline;
+}
+
+.all-notifications-link a {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 /* MAKE IT RESPONSIVE */
