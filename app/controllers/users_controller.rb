@@ -28,4 +28,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all.where.not(name: nil).excluding(current_user).order(:name)
   end
+
+  def notifications_seen
+    current_user.update(notifications_viewed_at: Time.zone.now)
+  end
 end

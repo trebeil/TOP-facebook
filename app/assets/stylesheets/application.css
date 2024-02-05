@@ -189,6 +189,13 @@ body {
   text-align: center;
 }
 
+.nav-notification-and-links button {
+  margin: 16px 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
 /* COLORS, BACKGROUNDS AND BORDERS */
 .post, .comment {
   border: 1px solid black;
@@ -312,6 +319,30 @@ body {
 .close-symbol {
   color: white;
   background-color: #8200E0;
+}
+
+.nav-notification-and-links button {
+  border: none;
+  background-color: unset;
+}
+
+.notifications-unread {
+  animation: 1s change-color infinite alternate ease-in;
+}
+
+@keyframes change-color {
+  50% {
+    transform: rotateZ(0deg);
+  }
+
+  75% {
+    transform: rotateZ(-45deg);
+  }
+
+  to {
+    font-weight: bolder;
+    transform: scale(1.2) rotateZ(45deg);
+  }
 }
 
 /* FONTS */

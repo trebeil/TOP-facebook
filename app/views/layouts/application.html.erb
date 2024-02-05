@@ -19,10 +19,27 @@
       <%= link_to 'fakebook', root_path, class: 'logo montserrat-alternates-extrabold' %>
       <% if user_signed_in? %>
         <div class='nav-notification-and-links'>
-          <span class="material-symbols-outlined notification-symbol" tabindex='0' 
-                data-action='click->notifications#toggle keydown.enter->notifications#toggle'>
-                notifications
-          </span>
+          <% if unseen_notifications %>
+            <%= form_with url: users_notifications_seen_path, method: 'post' do |form| %>
+              <%= form.button do %>
+                <span class="material-symbols-outlined notification-symbol notifications-unread" tabindex='0' 
+                      data-action='click->notifications#toggle keydown.enter->notifications#toggle click->notifications#updateSeen keydown.enter->notifications#updateSeen'
+                      data-notifications-target='symbol'>
+                      notifications_unread
+                </span>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= form_with url: users_notifications_seen_path, method: 'post' do |form| %>
+              <%= form.button do %>
+                <span class="material-symbols-outlined notification-symbol" tabindex='0' 
+                      data-action='click->notifications#toggle keydown.enter->notifications#toggle click->notifications#updateSeen keydown.enter->notifications#updateSeen'
+                      data-notifications-target='symbol'>
+                      notifications
+                </span>
+              <% end %>
+            <% end %>
+          <% end %>
           <ul class='nav-links'>
             <li><%= link_to 'Posts', posts_path %></li>
             <li><%= link_to 'My profile', current_user %></li>
