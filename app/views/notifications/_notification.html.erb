@@ -1,5 +1,7 @@
 <div id=<%= "notification_#{ notification.id }" %>>
   <%= link_to notification.text, notification.path %>
    - 
+  <%= content_tag :span, notification.created_at.strftime('%d %b %Y - %H:%M') %>
+   - 
    <%= link_to 'Delete notification', notification, data: { turbo_method: 'delete' } %>
 </div>
