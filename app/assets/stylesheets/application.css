@@ -60,8 +60,13 @@ html {
 }
 
 .notification-symbol:hover,
-.close-symbol:hover {
+.close-symbol:hover,
+.menu-symbol {
   cursor: pointer
+}
+
+.nav-links li {
+  text-wrap: nowrap;
 }
 
 /* ELEMENT SIZE AND POSITIONING */
@@ -73,6 +78,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  min-width: 345px;
 }
 
 .main {
@@ -129,7 +135,7 @@ body {
 .notifications {
   position: absolute;
   top: 64px;
-  right: 240px;
+  right: 96px;
   width: 390px;
   padding: 0px 0 24px 16px;
   visibility: hidden;
@@ -204,6 +210,10 @@ body {
 
 .notification-date {
   padding: 0 24px 0 8px;
+}
+
+.menu-symbol {
+  display: none;
 }
 
 /* COLORS, BACKGROUNDS AND BORDERS */
@@ -407,3 +417,43 @@ body {
 }
 
 /* MAKE IT RESPONSIVE */
+
+@media (max-width: 600px) {
+  .menu-symbol {
+    display: initial;
+    margin-left: 18px;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 56px;
+    left: 0px;
+    background-color: #8200E0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 240px;
+    height: 100%;
+    padding-left: 56px;
+    padding-top: 18px;
+    visibility: hidden;
+  }
+
+  .nav-links li {
+    padding: 8px 0;
+  }
+
+  .notifications {
+    right: 8px;
+  }
+
+  .show {
+    visibility: visible;
+  }
+}
+
+@media (max-width: 419px) {
+  .notifications {
+    width: calc(100% - 16px);
+  }
+}
