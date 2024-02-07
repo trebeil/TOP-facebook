@@ -185,6 +185,10 @@ body {
   visibility: visible;
 }
 
+.display-block {
+  display: block;
+}
+
 .notifications-title-close {
   margin: 8px 8px 0 0;
   text-align: end;
@@ -217,9 +221,6 @@ body {
 }
 
 /* COLORS, BACKGROUNDS AND BORDERS */
-.post, .comment {
-  border: 1px solid black;
-}
 
 .error {
   color: #E05100;

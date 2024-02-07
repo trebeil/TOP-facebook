@@ -3,8 +3,7 @@
 <%= turbo_frame_tag id='new_post' do %>
   <% if @post.errors.any? %>
     <div id='error_explanation'>
-      <h2><%= pluralize(@post.errors.count, 'error') %> prohibited the post from being saved.</h2>
-
+      <h3>Errors:</h3>
       <ul>
         <% @post.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
