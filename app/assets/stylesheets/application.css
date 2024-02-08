@@ -127,7 +127,9 @@ body {
   margin-bottom: 12px;
 }
 
-.alert, .notice {
+.alert,
+.notice,
+.success {
   text-align: center;
   padding: 12px 0;
 }
@@ -281,7 +283,8 @@ body {
   background-color: #E05100;
 }
 
-.notice {
+.notice,
+.success {
   background-color: #C6E000;
 }
 
