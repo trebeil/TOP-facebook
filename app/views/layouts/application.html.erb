@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html data-controller='scroll'>
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=<%= Rails.application.credentials.google_analytics_id %>'></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', <%= Rails.application.credentials.google_analytics_id %>);
+    </script>
+    
     <title>fakebook</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
