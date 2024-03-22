@@ -21,6 +21,12 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'stretch' %>
       </div>
 
+      <%= turbo_frame_tag 'recaptchas' do %>
+        <div class="mb-3 row">
+          <%= recaptcha_v3 action: 'signup', site_key: Rails.application.credentials.RECAPTCHA_KEY_V3, turbolinks: true %>
+        </div>
+      <% end %>
+
       <div class="actions">
         <%= f.submit "Sign up", class: 'stretch' %>
       </div>
