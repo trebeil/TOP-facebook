@@ -19,6 +19,12 @@
         <%= f.password_field :password, autocomplete: "current-password", class: 'stretch', placeholder: 'password' %>
       </div>
 
+      <%= turbo_frame_tag 'recaptchas' do %>
+          <div class="mb-3 row">
+            <%= recaptcha_v3 action: 'signin', site_key: Rails.application.credentials.RECAPTCHA_KEY_V3, turbolinks: true %>
+          </div>
+      <% end %>
+
       <div class="actions">
         <%= f.submit "Sign in with email", class: 'stretch' %>
       </div>

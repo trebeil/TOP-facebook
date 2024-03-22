@@ -1,0 +1,7 @@
+<%= turbo_stream.replace 'recaptchas' do %>
+  <div class="mb-3 row"
+    id='recaptchaV2'
+    data-controller='recaptcha-v2'
+    data-recaptcha-v2-site-key-value="<%= Rails.application.credentials.RECAPTCHA_KEY %>">
+  </div>
+<% end %>
