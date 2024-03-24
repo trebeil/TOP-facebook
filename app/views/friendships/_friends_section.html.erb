@@ -1,7 +1,13 @@
 <h1><%= "#{name} friends" %></h1>
 
 <% if current_user == user %>
-  <%= render friends %>
+  <div class='my-friends'>
+    <% if friends.empty? %>
+      <p>You have no friends yet.</p>
+    <% else %>
+      <%= render friends %>
+    <% end %>
+  </div>
 <% else %>
   <h2>Friends in common</h2>
   <div class='friends-in-common'>

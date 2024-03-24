@@ -54,7 +54,9 @@
 .add-friend-button,
 .delete-friendship-link,
 .cancel-request-link,
-.edit-profile-link {
+.edit-profile-link,
+.accept-request-link,
+.reject-request-link {
   padding: 8px;
   margin: 4px 0;
 }
@@ -72,7 +74,8 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.add-friend-button {
+.add-friend-button,
+.accept-request-link {
   border: 1px solid white;
   border-radius: 4px;
   background-color: #C6E000;
@@ -83,7 +86,8 @@
   border-radius: 4px;
 }
 
-.cancel-request-link {
+.cancel-request-link,
+.reject-request-link {
   border: 1px solid #E05100;
   border-radius: 4px;
 }
