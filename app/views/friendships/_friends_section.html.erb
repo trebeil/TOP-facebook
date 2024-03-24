@@ -1,10 +1,22 @@
-<h1><%= link_to "#{name} friends", user_friends_path(user.id), data: { turbo_frame:'_top' } %></h1>
+<h1><%= "#{name} friends" %></h1>
 
 <% if current_user == user %>
   <%= render friends %>
 <% else %>
   <h2>Friends in common</h2>
-  <%= render friends_in_common %>
+  <div class='friends-in-common'>
+    <% if friends_in_common.empty? %>
+      <p>You and <%= name[0...-2] %> have no friends in common yet.</p>
+    <% else %>
+      <%= render friends_in_common %>
+    <% end %>
+  </div>
   <h2>Other friends</h2>
-  <%= render other_friends %>
+  <div class='other-friends'>
+    <% if other_friends.empty? %>
+      <p><%= name[0...-2] %> has no other friends yet.</p>
+    <% else %>
+      <%= render other_friends %>
+    <% end %>
+  </div>
 <% end %>
